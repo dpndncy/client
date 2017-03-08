@@ -10,12 +10,17 @@ import { LoginComponent } from './login/login.component';
 import { OAuthService } from 'angular2-oauth2/oauth-service';
 import { UserService } from './services/user.service';
 import { routing } from './app.routes';
+import {UserResolver} from "./resolvers/user.resolver";
+import { HomeComponent } from './home/home.component';
+import { IndexComponent } from './index/index.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
@@ -24,12 +29,14 @@ import { routing } from './app.routes';
     routing
   ],
   providers: [
-    { provide: Http,
+    {
+      provide: Http,
       useFactory: (xhrBackend: XHRBackend, requestOptions: RequestOptions, router: Router) => new HttpInterceptor(xhrBackend, requestOptions, router),
       deps: [XHRBackend, RequestOptions, Router]
     },
     OAuthService,
-    UserService
+    UserService,
+    UserResolver
   ],
   bootstrap: [AppComponent]
 })

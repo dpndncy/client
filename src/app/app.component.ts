@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { OAuthService } from 'angular2-oauth2/oauth-service';
 import { LoginComponent } from './login/login.component';
 import {UserService} from "./services/user.service";
+import {Router, ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,9 @@ import {UserService} from "./services/user.service";
   styleUrls: ['./app.component.css'],
   providers: [LoginComponent]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  constructor(private oauthService: OAuthService, private userService: UserService) {
+  constructor(private oauthService: OAuthService, private userService: UserService, private router: Router, private route: ActivatedRoute) {
 
     // Login-Url
     this.oauthService.loginUrl = "https://accounts.google.com/o/oauth2/v2/auth"; //Id-Provider?
@@ -45,13 +46,26 @@ export class AppComponent {
     // It dosn't initiate the login
     this.oauthService.tryLogin({
       onTokenReceived: context => {
-        console.debug("logged in");
-        console.debug(context);
-        this.userService.login(context.accessToken);
+        this.userService.login(context.accessToken).subscribe(response => {
+          this.router.navigate(['/home']);
+        }, error => {
+          this.router.navigate(['/index']);
+        });
       }
     });
 
   }
 
-  title = 'app works!';
+  public ngOnInit() {
+    let parts = this.oauthService.getFragment();
+    var accessToken = parts["access_token"];
+    if(!accessToken) {
+      this.userService.me().subscribe(response => {
+        this.router.navigate(['/home']);
+      }, error => {
+        this.router.navigate(['/index']);
+      });
+    }
+  }
+
 }

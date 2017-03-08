@@ -38,12 +38,13 @@ export class HttpInterceptor extends Http {
       options.headers = new Headers();
     }
     options.headers.append('Content-Type', 'application/json');
+    options.withCredentials = true;
     return options;
   }
 
   intercept(observable: Observable<Response>): Observable<Response> {
     return observable.catch((err, source) => {
-      if (err.status  == 401 && !_.endsWith(err.url, 'api/user/login')) {
+      if (err.status  == 401 && !_.endsWith(err.url, 'api/user/login')  && !_.endsWith(err.url, 'api/user/me')) {
         this._router.navigate(['/login']);
         return Observable.empty();
       } else {
