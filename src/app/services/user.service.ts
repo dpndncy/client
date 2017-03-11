@@ -7,8 +7,8 @@ import {Observable} from "rxjs";
 @Injectable()
 export class UserService {
 
-  user: User;
-  profile: Profile;
+  public user: User;
+  public profile: Profile;
 
   constructor(private http: Http) { }
 

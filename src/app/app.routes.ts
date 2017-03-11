@@ -2,7 +2,7 @@ import {Routes, RouterModule} from "@angular/router";
 import {ModuleWithProviders} from "@angular/core";
 import {LoginComponent} from "./login/login.component";
 import {AppComponent} from "./app.component";
-import {UserResolver} from "./resolvers/user.resolver";
+import {UserResolver} from "./common/resolvers/user.resolver";
 import {HomeComponent} from "./home/home.component";
 import {IndexComponent} from "./index/index.component";
 
