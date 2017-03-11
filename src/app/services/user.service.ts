@@ -1,25 +1,33 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from "@angular/http";
 import {User} from "../model/User";
-import {Observable, Subject} from "rxjs";
-import Profile = firefox.Profile;
+import {Profile} from "../model/Profile";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class UserService {
 
   user: User;
+  profile: Profile;
 
   constructor(private http: Http) { }
 
   public me(): Observable<User> {
     return this.http.get("/api/user/me").map(response => {
-      this.user = response.json().user;
+      this.user = response.json();
       return this.user;
     });
   }
 
   public profile(username:string): Observable<Profile> {
     return this.http.get("/api/user/profile/${username}").map(response => {
+      return response.json();
+    });
+  }
+
+  public profile(): Observable<Profile> {
+    return this.http.get("/api/user/profile").map(response => {
+      this.profile = response.json();
       return response.json();
     });
   }
