@@ -1,6 +1,6 @@
 import {CourseLevel} from "./CourseLevel";
 
-export class CourseCreateRequest {
+export class CourseUpdateRequest {
   name: string;
   description: string;
   categoryId: number;

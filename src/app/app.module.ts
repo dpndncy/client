@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { IndexComponent } from './index/index.component';
 import { RotatingPlaneComponent } from 'ng2-spin-kit/app/spinner/rotating-plane.component';
 import { SplashComponent } from './splash/splash.component';
+import { LatestCoursesComponent } from './latest-courses/latest-courses.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { SplashComponent } from './splash/splash.component';
     HomeComponent,
     IndexComponent,
     RotatingPlaneComponent,
-    SplashComponent
+    SplashComponent,
+    LatestCoursesComponent
   ],
   imports: [
     BrowserModule,

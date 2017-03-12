@@ -1,0 +1,11 @@
+<div>
+  <sk-rotating-plane [isRunning]="!dataLoaded"></sk-rotating-plane>
+  <div [hidden]="!dataLoaded">
+    Latest courses on Dpndncy
+    <ul>
+      <li *ngFor="let course of courses">
+        {{course.name}}
+      </li>
+    </ul>
+  </div>
+</div>
