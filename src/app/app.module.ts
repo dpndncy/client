@@ -15,6 +15,7 @@ import {UserResolver} from "./common/resolvers/user.resolver";
 import { HomeComponent } from './home/home.component';
 import { IndexComponent } from './index/index.component';
 import { RotatingPlaneComponent } from 'ng2-spin-kit/app/spinner/rotating-plane.component';
+import { SplashComponent } from './splash/splash.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { RotatingPlaneComponent } from 'ng2-spin-kit/app/spinner/rotating-plane.
     LoginComponent,
     HomeComponent,
     IndexComponent,
-    RotatingPlaneComponent
+    RotatingPlaneComponent,
+    SplashComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginComponent} from "../login/login.component";
+import {UserService} from "../services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-index',
@@ -9,9 +11,12 @@ import {LoginComponent} from "../login/login.component";
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    if(this.userService.user) {
+      this.router.navigate(["/home"]);
+    }
   }
 
 }

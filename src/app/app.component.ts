@@ -12,8 +12,6 @@ import {Router, ActivatedRoute} from "@angular/router";
 })
 export class AppComponent implements OnInit {
 
-  public loaded: boolean;
-
   constructor(private oauthService: OAuthService, private userService: UserService, private router: Router, private route: ActivatedRoute) {
 
     // Login-Url
@@ -49,10 +47,8 @@ export class AppComponent implements OnInit {
     this.oauthService.tryLogin({
       onTokenReceived: context => {
         this.userService.login(context.accessToken).subscribe(response => {
-          this.loaded = true;
           this.router.navigate(['/home']);
         }, error => {
-          this.loaded = true;
           this.router.navigate(['/index']);
         });
       }
@@ -61,17 +57,7 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit() {
-    let parts = this.oauthService.getFragment();
-    var accessToken = parts["access_token"];
-    if(!accessToken) {
-      this.userService.me().subscribe(response => {
-        this.loaded = true;
-        this.router.navigate(['/home']);
-      }, error => {
-        this.loaded = true;
-        this.router.navigate(['/index']);
-      });
-    }
+
   }
 
 }

@@ -5,6 +5,7 @@ import {AppComponent} from "./app.component";
 import {UserResolver} from "./common/resolvers/user.resolver";
 import {HomeComponent} from "./home/home.component";
 import {IndexComponent} from "./index/index.component";
+import {SplashComponent} from "./splash/splash.component";
 
 const appRoutes: Routes = [
   {
@@ -18,6 +19,10 @@ const appRoutes: Routes = [
   {
     path: 'index',
     component: IndexComponent
+  },
+  {
+    path: '',
+    component: SplashComponent
   }
 ];
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
