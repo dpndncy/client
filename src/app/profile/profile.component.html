@@ -1,0 +1,6 @@
+<div>
+  <sk-rotating-plane [isRunning]="!dataLoaded"></sk-rotating-plane>
+  <div [hidden]="!dataLoaded">
+    {{profile.user.name}}
+  </div>
+</div>

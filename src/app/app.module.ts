@@ -17,6 +17,7 @@ import { IndexComponent } from './index/index.component';
 import { RotatingPlaneComponent } from 'ng2-spin-kit/app/spinner/rotating-plane.component';
 import { SplashComponent } from './splash/splash.component';
 import { LatestCoursesComponent } from './latest-courses/latest-courses.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { LatestCoursesComponent } from './latest-courses/latest-courses.componen
     IndexComponent,
     RotatingPlaneComponent,
     SplashComponent,
-    LatestCoursesComponent
+    LatestCoursesComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,7 @@ import { LatestCoursesComponent } from './latest-courses/latest-courses.componen
   providers: [
     {
       provide: Http,
-      useFactory: (xhrBackend: XHRBackend, requestOptions: RequestOptions, router: Router) => new HttpInterceptor(xhrBackend, requestOptions, router),
+      useFactory: httpBuilder,
       deps: [XHRBackend, RequestOptions, Router]
     },
     OAuthService,
@@ -49,3 +51,7 @@ import { LatestCoursesComponent } from './latest-courses/latest-courses.componen
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+function httpBuilder(xhrBackend: XHRBackend, requestOptions: RequestOptions, router: Router):HttpInterceptor {
+  return new HttpInterceptor(xhrBackend, requestOptions, router);
+}

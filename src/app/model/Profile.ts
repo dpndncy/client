@@ -1,3 +1,8 @@
-/**
- * Created by vaibhav on 11/03/17.
- */
+import {User} from "./User";
+import {Course} from "./Course";
+
+export class Profile {
+  user: User;
+  enrolledCourseList : Course[];
+  authoredCourseList : Course[];
+}

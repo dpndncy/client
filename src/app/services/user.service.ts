@@ -19,15 +19,18 @@ export class UserService {
     });
   }
 
-  public profile(username:string): Observable<Profile> {
-    return this.http.get("/api/user/profile/${username}").map(response => {
-      return response.json();
-    });
-  }
-
-  public profile(): Observable<Profile> {
-    return this.http.get("/api/user/profile").map(response => {
-      this.profile = response.json();
+  public getProfile(username?:string): Observable<Profile> {
+    let url: string;
+    if(username) {
+      url = `/api/user/profile/${username}`;
+    }
+    else {
+      url = "/api/user/profile";
+    }
+    return this.http.get(url).map(response => {
+      if(username) {
+        this.profile = response.json();
+      }
       return response.json();
     });
   }

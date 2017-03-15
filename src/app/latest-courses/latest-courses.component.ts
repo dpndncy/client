@@ -10,8 +10,8 @@ import {Course} from "../model/Course";
 export class LatestCoursesComponent implements OnInit {
 
   private dataLoaded: boolean = false;
-  public courses: Course[];
-  public error: string;
+  private courses: Course[];
+  private error: string;
 
   constructor(private courseService: CourseService) { }
 

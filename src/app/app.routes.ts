@@ -6,6 +6,7 @@ import {UserResolver} from "./common/resolvers/user.resolver";
 import {HomeComponent} from "./home/home.component";
 import {IndexComponent} from "./index/index.component";
 import {SplashComponent} from "./splash/splash.component";
+import {ProfileComponent} from "./profile/profile.component";
 
 const appRoutes: Routes = [
   {
@@ -19,6 +20,14 @@ const appRoutes: Routes = [
   {
     path: 'index',
     component: IndexComponent
+  },
+  {
+    path: 'profile/:username',
+    component: ProfileComponent
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent
   },
   {
     path: '',
